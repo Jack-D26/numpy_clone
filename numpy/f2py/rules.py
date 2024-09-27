@@ -603,8 +603,8 @@ rout_rules = [
                         },
         'decl': ['    #ctype# #name#_return_value = NULL;',
                  '    int #name#_return_value_len = 0;'],
-        'callfortran':'#name#_return_value,#name#_return_value_len,',
-        'callfortranroutine':['    #name#_return_value_len = #rlength#;',
+        'callfortran': '#name#_return_value,#name#_return_value_len,',
+        'callfortranroutine': ['    #name#_return_value_len = #rlength#;',
                               '    if ((#name#_return_value = (string)malloc('
                               + '#name#_return_value_len+1) == NULL) {',
                               '        PyErr_SetString(PyExc_MemoryError, \"out of memory\");',
@@ -635,7 +635,7 @@ rout_rules = [
         'return': ',#name#_return_value',
         'freemem': '    STRINGFREE(#name#_return_value);',
         'need': ['F_FUNC', '#ctype#', 'STRINGFREE'],
-        '_check':l_and(isstringfunction, l_not(isfunction_wrap))  # ???obsolete
+        '_check': l_and(isstringfunction, l_not(isfunction_wrap))  # ???obsolete
     },
     {  # Debugging
         'routdebugenter': '    fprintf(stderr,"debug-capi:Python C/API function #modulename#.#name#(#docsignature#)\\n");',
@@ -697,8 +697,8 @@ aux_rules = [
         'decl': ['    #ctype# #varname# = NULL;',
                  '    int slen(#varname#);',
                  ],
-        'need':['len..'],
-        '_check':isstring
+        'need': ['len..'],
+        '_check': isstring
     },
     # Array
     {  # Common
@@ -706,7 +706,7 @@ aux_rules = [
                  '    npy_intp #varname#_Dims[#rank#] = {#rank*[-1]#};',
                  '    const int #varname#_Rank = #rank#;',
                  ],
-        'need':['len..', {hasinitvalue: 'forcomb'}, {hasinitvalue: 'CFUNCSMESS'}],
+        'need': ['len..', {hasinitvalue: 'forcomb'}, {hasinitvalue: 'CFUNCSMESS'}],
         '_check': isarray
     },
     # Scalararray
@@ -815,7 +815,7 @@ arg_rules = [
         'setjmpbuf': '(setjmp(#varname#_cb.jmpbuf))',
         'callfortran': {l_not(isintent_callback): '#varname#_cptr,'},
         'need': ['#cbname#', 'setjmp.h'],
-        '_check':isexternal
+        '_check': isexternal
     },
     {
         'frompyobj': [{l_not(isintent_callback): """\
@@ -869,8 +869,8 @@ if (#varname#_cb.capi==Py_None) {
         Py_DECREF(#varname#_cb.args_capi);
     }""",
         'need': ['SWAP', 'create_cb_arglist'],
-        '_check':isexternal,
-        '_depend':''
+        '_check': isexternal,
+        '_depend': ''
     },
     # Scalars (not complex)
     {  # Common
@@ -988,9 +988,9 @@ if (#varname#_cb.capi==Py_None) {
         'decl': ['    #ctype# #varname# = NULL;',
                  '    int slen(#varname#);',
                  '    PyObject *#varname#_capi = Py_None;'],
-        'callfortran':'#varname#,',
-        'callfortranappend':'slen(#varname#),',
-        'pyobjfrom':[
+        'callfortran': '#varname#,',
+        'callfortranappend': 'slen(#varname#),',
+        'pyobjfrom': [
             {debugcapi:
              '    fprintf(stderr,'
              '"#vardebugshowvalue#\\n",slen(#varname#),#varname#);'},
@@ -1019,8 +1019,8 @@ if (#varname#_cb.capi==Py_None) {
     }  /*if (f2py_success) of #varname#*/""",
         'need': ['#ctype#_from_pyobj', 'len..', 'STRINGFREE',
                  {l_not(isintent_c): 'STRINGPADN'}],
-        '_check':isstring,
-        '_depend':''
+        '_check': isstring,
+        '_depend': ''
     }, {  # Not hidden
         'argformat': {isrequired: 'O'},
         'keyformat': {isoptional: 'O'},
@@ -1053,7 +1053,7 @@ if (#varname#_cb.capi==Py_None) {
                  '    int capi_#varname#_intent = 0;',
                  {isstringarray: '    int slen(#varname#) = 0;'},
                  ],
-        'callfortran':'#varname#,',
+        'callfortran': '#varname#,',
         'callfortranappend': {isstringarray: 'slen(#varname#),'},
         'return': {isintent_out: ',capi_#varname#_as_array'},
         'need': 'len..',
