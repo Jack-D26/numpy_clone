@@ -877,9 +877,9 @@ _ByteOrderChar: TypeAlias = L["<", ">", "=", "|"]
 # can be anything, is case-insensitive, and only the first character matters
 _ByteOrder: TypeAlias = L[
     "S",                # swap the current order (default)
-    "<", "L", "little", # little-endian
+    "<", "L", "little",  # little-endian
     ">", "B", "big",    # big endian
-    "=", "N", "native", # native order
+    "=", "N", "native",  # native order
     "|", "I",           # ignore
 ]  # fmt: skip
 _DTypeKind: TypeAlias = L[
