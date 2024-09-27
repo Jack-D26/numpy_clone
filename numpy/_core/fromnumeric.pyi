@@ -677,7 +677,7 @@ def sum(
     a: _ArrayLike[_SCT],
     axis: None = ...,
     dtype: None = ...,
-    out: None  = ...,
+    out: None = ...,
     keepdims: bool = ...,
     initial: _NumberLike_co = ...,
     where: _ArrayLikeBool_co = ...,
