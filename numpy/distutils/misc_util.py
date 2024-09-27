@@ -605,7 +605,7 @@ def general_source_files(top_path):
     pruned_directories = {'CVS':1, '.svn':1, 'build':1}
     prune_file_pat = re.compile(r'(?:[~#]|\.py[co]|\.o)$')
     for dirpath, dirnames, filenames in os.walk(top_path, topdown=True):
-        pruned = [ d for d in dirnames if d not in pruned_directories ]
+        pruned = [d for d in dirnames if d not in pruned_directories ]
         dirnames[:] = pruned
         for f in filenames:
             if not prune_file_pat.search(f):
@@ -618,7 +618,7 @@ def general_source_directories_files(top_path):
     pruned_directories = ['CVS', '.svn', 'build']
     prune_file_pat = re.compile(r'(?:[~#]|\.py[co]|\.o)$')
     for dirpath, dirnames, filenames in os.walk(top_path, topdown=True):
-        pruned = [ d for d in dirnames if d not in pruned_directories ]
+        pruned = [d for d in dirnames if d not in pruned_directories ]
         dirnames[:] = pruned
         for d in dirnames:
             dpath = os.path.join(dirpath, d)
@@ -2136,7 +2136,7 @@ def get_numpy_include_dirs():
     include_dirs = Configuration.numpy_include_dirs[:]
     if not include_dirs:
         import numpy
-        include_dirs = [ numpy.get_include() ]
+        include_dirs = [numpy.get_include() ]
     # else running numpy/_core/setup.py
     return include_dirs
 

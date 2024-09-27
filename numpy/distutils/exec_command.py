@@ -146,7 +146,7 @@ def find_executable(exe, path=None, _cache={}):
     if os.path.isabs(exe):
         paths = ['']
     else:
-        paths = [ os.path.abspath(p) for p in path.split(os.pathsep) ]
+        paths = [os.path.abspath(p) for p in path.split(os.pathsep) ]
 
     for path in paths:
         fn = os.path.join(path, exe)
@@ -164,12 +164,12 @@ def find_executable(exe, path=None, _cache={}):
 
 ############################################################
 
-def _preserve_environment( names ):
+def _preserve_environment(names ):
     log.debug('_preserve_environment(%r)' % (names))
     env = {name: os.environ.get(name) for name in names}
     return env
 
-def _update_environment( **env ):
+def _update_environment(**env ):
     log.debug('_update_environment(...)')
     for name, value in env.items():
         os.environ[name] = value or ''
@@ -233,8 +233,8 @@ def exec_command(command, execute_in='', use_shell=None, use_tee=None,
     else:
         log.debug('Retaining cwd: %s' % oldcwd)
 
-    oldenv = _preserve_environment( list(env.keys()) )
-    _update_environment( **env )
+    oldenv = _preserve_environment(list(env.keys()) )
+    _update_environment(**env )
 
     try:
         st = _exec_command(command,
