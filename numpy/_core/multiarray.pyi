@@ -349,35 +349,6 @@ class _ConstructorEmpty(Protocol):
         **kwargs: Unpack[_KwargsEmpty],
     ) -> NDArray[Any]: ...
 
-error: Final = Exception
-
-# from ._multiarray_umath
-ITEM_HASOBJECT: Final[L[1]]
-LIST_PICKLE: Final[L[2]]
-ITEM_IS_POINTER: Final[L[4]]
-NEEDS_INIT: Final[L[8]]
-NEEDS_PYAPI: Final[L[16]]
-USE_GETITEM: Final[L[32]]
-USE_SETITEM: Final[L[64]]
-DATETIMEUNITS: Final[CapsuleType]
-_ARRAY_API: Final[CapsuleType]
-_flagdict: Final[dict[str, int]]
-_monotonicity: Final[Callable[..., object]]
-_place: Final[Callable[..., object]]
-_reconstruct: Final[Callable[..., object]]
-_vec_string: Final[Callable[..., object]]
-correlate2: Final[Callable[..., object]]
-dragon4_positional: Final[Callable[..., object]]
-dragon4_scientific: Final[Callable[..., object]]
-interp_complex: Final[Callable[..., object]]
-set_datetimeparse_function: Final[Callable[..., object]]
-def get_handler_name(a: NDArray[Any] = ..., /) -> str | None: ...
-def get_handler_version(a: NDArray[Any] = ..., /) -> int | None: ...
-def format_longfloat(x: np.longdouble, precision: int) -> str: ...
-def scalar(dtype: _DType, object: bytes | object = ...) -> ndarray[tuple[()], _DType]: ...
-def set_typeDict(dict_: dict[str, np.dtype[Any]], /) -> None: ...
-typeinfo: Final[dict[str, np.dtype[np.generic]]]
-
 ALLOW_THREADS: Final[int]  # 0 or 1 (system-specific)
 BUFSIZE: L[8192]
 CLIP: L[0]
