@@ -5359,7 +5359,7 @@ class TestOptionalArgs:
         for f in ['min', 'max']:
             testaxis(f, a, d)
 
-        d = (np.arange(24).reshape((2,3,4))%2 == 0)
+        d = (np.arange(24).reshape((2,3,4)) % 2 == 0)
         a = np.ma.array(d, mask=m)
         for f in ['all', 'any']:
             testaxis(f, a, d)

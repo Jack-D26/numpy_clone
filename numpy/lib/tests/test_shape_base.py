@@ -241,7 +241,7 @@ class TestApplyAlongAxis:
             """produces an asymmetric non-square matrix from x"""
             assert_equal(x.ndim, 1)
             res = x[::-1] * x[1:,None]
-            return np.ma.masked_where(res%5 == 0, res)
+            return np.ma.masked_where(res % 5 == 0, res)
         a = np.arange(6 * 3).reshape((6, 3))
         res = apply_along_axis(f1to2, 0, a)
         assert_(isinstance(res, np.ma.masked_array))
@@ -330,7 +330,7 @@ class TestExpandDims:
 
     def test_subclasses(self):
         a = np.arange(10).reshape((2, 5))
-        a = np.ma.array(a, mask=a%3 == 0)
+        a = np.ma.array(a, mask=a % 3 == 0)
 
         expanded = np.expand_dims(a, axis=1)
         assert_(isinstance(expanded, np.ma.MaskedArray))
