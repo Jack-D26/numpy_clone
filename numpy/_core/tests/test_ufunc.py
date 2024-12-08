@@ -1842,7 +1842,6 @@ class TestUfunc:
     @pytest.mark.parametrize('initial', (-np.inf, 5.))
     def test_reduction_with_where_and_initial(self, axis, where, initial):
         a = np.arange(9.).reshape(3, 3)
-        a_copy = a.copy()
         a_check = np.full(a.shape, -np.inf)
         np.positive(a, out=a_check, where=where)
 
@@ -3018,7 +3017,7 @@ def test_addition_reduce_negative_zero(dtype, use_initial):
 def test_addition_string_types(dt1, dt2):
     arr1 = np.array([1234234], dtype=dt1)
     arr2 = np.array([b"423"], dtype=dt2)
-    with pytest.raises(np._core._exceptions.UFuncTypeError) as exc:
+    with pytest.raises(np._core._exceptions.UFuncTypeError):
         np.add(arr1, arr2)
 
 
