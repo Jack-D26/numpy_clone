@@ -735,12 +735,12 @@ class _Distutils:
         if not hasattr(self._ccompiler, "_paths"):
             self._dist_test_spawn(cmd)
             return
-        old_path = os.getenv("path")
+        old_path = os.getenv("PATH")
         try:
-            os.environ["path"] = self._ccompiler._paths
+            os.environ["PATH"] = self._ccompiler._paths
             self._dist_test_spawn(cmd)
         finally:
-            os.environ["path"] = old_path
+            os.environ["PATH"] = old_path
 
     _dist_warn_regex = re.compile(
         # intel and msvc compilers don't raise
