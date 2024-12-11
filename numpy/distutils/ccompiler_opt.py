@@ -862,7 +862,7 @@ class _Cache:
         # TODO: don't write if the cache doesn't change
         self.dist_log("write cache to path ->", self._cache_path)
         cdict = self.__dict__.copy()
-        for attr in self.__dict__.keys():
+        for attr in self.__dict__:
             if re.match(self._cache_ignore, attr):
                 cdict.pop(attr)
 

@@ -812,7 +812,7 @@ class Configuration:
 
         known_keys = self.list_keys + self.dict_keys
         self.extra_keys = self._extra_keys[:]
-        for n in attrs.keys():
+        for n in attrs:
             if n in known_keys:
                 continue
             a = attrs[n]
@@ -1419,7 +1419,7 @@ class Configuration:
                       include_non_existing=include_non_existing)
 
     def _fix_paths_dict(self, kw):
-        for k in kw.keys():
+        for k in kw:
             v = kw[k]
             if k in ['sources', 'depends', 'include_dirs', 'library_dirs',
                      'module_dirs', 'extra_objects']:
@@ -1763,7 +1763,7 @@ class Configuration:
             a = getattr(self, key)
             a.update(dict.get(key, {}))
         known_keys = self.list_keys + self.dict_keys + self.extra_keys
-        for key in dict.keys():
+        for key in dict:
             if key not in known_keys:
                 a = getattr(self, key, None)
                 if a and a==dict[key]: continue

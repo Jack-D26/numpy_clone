@@ -776,7 +776,7 @@ def _savez(file, args, kwds, compress, allow_pickle=True, pickle_kwargs=None):
     namedict = kwds
     for i, val in enumerate(args):
         key = 'arr_%d' % i
-        if key in namedict.keys():
+        if key in namedict:
             raise ValueError(
                 "Cannot use un-named variables and keyword %s" % key)
         namedict[key] = val

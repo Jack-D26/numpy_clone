@@ -2249,7 +2249,7 @@ def analyzebody(block, args, tab=''):
             else:
                 as_ = b['args']
             # Add private members to skipfuncs for gh-23879
-            if b['name'] in maybe_private.keys():
+            if b['name'] in maybe_private:
                 skipfuncs.append(b['name'])
             if b['name'] in skipfuncs:
                 continue

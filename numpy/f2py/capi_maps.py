@@ -616,12 +616,12 @@ def routsign2map(rout):
         ret['F_WRAPPEDFUNC'] = 'F_WRAPPEDFUNC'
     lcb_map = {}
     if 'use' in rout:
-        for u in rout['use'].keys():
+        for u in rout['use']:
             if u in cb_rules.cb_map:
                 for un in cb_rules.cb_map[u]:
                     ln = un[0]
                     if 'map' in rout['use'][u]:
-                        for k in rout['use'][u]['map'].keys():
+                        for k in rout['use'][u]['map']:
                             if rout['use'][u]['map'][k] == un[0]:
                                 ln = k
                                 break
