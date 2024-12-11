@@ -103,7 +103,7 @@ class LinuxCPUInfo(CPUInfoBase):
     def __init__(self):
         if self.info is not None:
             return
-        info = [ {} ]
+        info = [{} ]
         ok, output = getoutput('uname -m')
         if ok:
             info[0]['uname_m'] = output.strip()
