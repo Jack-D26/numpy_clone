@@ -2417,7 +2417,7 @@ class openblas_info(blas_info):
             {
                 %(calls)s
                 return 0;
-            }""") % dict(prototypes=prototypes, calls=calls)
+            }""") % {'prototypes': prototypes, 'calls': calls}
         src = os.path.join(tmpdir, 'source.c')
         out = os.path.join(tmpdir, 'a.out')
         # Add the additional "extra" arguments
