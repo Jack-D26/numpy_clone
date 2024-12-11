@@ -2605,7 +2605,7 @@ class CCompilerOpt(_Config, _Distutils, _Cache, _CCompiler, _Feature, _Parse):
             if isinstance(tar, str):
                 target_name = tar
             else: # multi target
-                target_name = '__'.join([t for t in tar])
+                target_name = '__'.join(list(tar))
             req_detect = self.feature_detect(tar)
             req_detect = '&&'.join([
                 "CHK(%s)" % f for f in req_detect
