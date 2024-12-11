@@ -3871,11 +3871,10 @@ def _ureduce(a, func, keepdims=False, **kwargs):
     if axis is not None:
         axis = _nx.normalize_axis_tuple(axis, nd)
 
-        if keepdims:
-            if out is not None:
-                index_out = tuple(
-                    0 if i in axis else slice(None) for i in range(nd))
-                kwargs['out'] = out[(Ellipsis, ) + index_out]
+        if keepdims and out is not None:
+            index_out = tuple(
+                0 if i in axis else slice(None) for i in range(nd))
+            kwargs['out'] = out[(Ellipsis, ) + index_out]
 
         if len(axis) == 1:
             kwargs['axis'] = axis[0]
@@ -3889,10 +3888,9 @@ def _ureduce(a, func, keepdims=False, **kwargs):
             a = a.reshape(a.shape[:nkeep] + (-1,))
             kwargs['axis'] = -1
     else:
-        if keepdims:
-            if out is not None:
-                index_out = (0, ) * nd
-                kwargs['out'] = out[(Ellipsis, ) + index_out]
+        if keepdims and out is not None:
+            index_out = (0, ) * nd
+            kwargs['out'] = out[(Ellipsis, ) + index_out]
 
     r = func(a, **kwargs)
 

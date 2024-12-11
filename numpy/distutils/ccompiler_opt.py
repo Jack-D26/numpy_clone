@@ -815,25 +815,24 @@ class _Cache:
 
         self._cache_hash = self.cache_hash(*factors, *self.conf_cache_factors)
         self._cache_path = cache_path
-        if cache_path:
-            if os.path.exists(cache_path):
-                self.dist_log("load cache from file ->", cache_path)
-                cache_mod = self.dist_load_module("cache", cache_path)
-                if not cache_mod:
-                    self.dist_log(
-                        "unable to load the cache file as a module",
-                        stderr=True
-                    )
-                elif not hasattr(cache_mod, "hash") or \
+        if cache_path and os.path.exists(cache_path):
+            self.dist_log("load cache from file ->", cache_path)
+            cache_mod = self.dist_load_module("cache", cache_path)
+            if not cache_mod:
+                self.dist_log(
+                    "unable to load the cache file as a module",
+                    stderr=True
+                )
+            elif not hasattr(cache_mod, "hash") or \
                      not hasattr(cache_mod, "data"):
-                    self.dist_log("invalid cache file", stderr=True)
-                elif self._cache_hash == cache_mod.hash:
-                    self.dist_log("hit the file cache")
-                    for attr, val in cache_mod.data.items():
-                        setattr(self, attr, val)
-                    self.cache_infile = True
-                else:
-                    self.dist_log("miss the file cache")
+                self.dist_log("invalid cache file", stderr=True)
+            elif self._cache_hash == cache_mod.hash:
+                self.dist_log("hit the file cache")
+                for attr, val in cache_mod.data.items():
+                    setattr(self, attr, val)
+                self.cache_infile = True
+            else:
+                self.dist_log("miss the file cache")
 
         if not self.cache_infile:
             other_cache = _share_cache.get(self._cache_hash)

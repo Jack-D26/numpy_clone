@@ -414,9 +414,8 @@ def isexternal(var):
 
 def getdimension(var):
     dimpattern = r"\((.*?)\)"
-    if 'attrspec' in var.keys():
-        if any('dimension' in s for s in var['attrspec']):
-            return [re.findall(dimpattern, v) for v in var['attrspec']][0]
+    if 'attrspec' in var.keys() and any('dimension' in s for s in var['attrspec']):
+        return [re.findall(dimpattern, v) for v in var['attrspec']][0]
 
 
 def isrequired(var):
@@ -826,14 +825,13 @@ def dictappend(rd, ar):
                     rd[k] = rd[k] + ar[k]
                 else:
                     rd[k].append(ar[k])
-            elif isinstance(rd[k], dict):
-                if isinstance(ar[k], dict):
-                    if k == 'separatorsfor':
-                        for k1 in ar[k].keys():
-                            if k1 not in rd[k]:
-                                rd[k][k1] = ar[k][k1]
-                    else:
-                        rd[k] = dictappend(rd[k], ar[k])
+            elif isinstance(rd[k], dict) and isinstance(ar[k], dict):
+                if k == 'separatorsfor':
+                    for k1 in ar[k].keys():
+                        if k1 not in rd[k]:
+                            rd[k][k1] = ar[k][k1]
+                else:
+                    rd[k] = dictappend(rd[k], ar[k])
         else:
             rd[k] = ar[k]
     return rd
