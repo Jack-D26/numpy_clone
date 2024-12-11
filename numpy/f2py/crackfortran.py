@@ -1926,9 +1926,7 @@ def setattrspec(decl, attr, force=0):
         decl['attrspec'].append(attr)
     if attr in decl['attrspec']:
         return decl
-    if attr == 'static' and 'automatic' not in decl['attrspec']:
-        decl['attrspec'].append(attr)
-    elif attr == 'automatic' and 'static' not in decl['attrspec']:
+    if attr == 'static' and 'automatic' not in decl['attrspec'] or attr == 'automatic' and 'static' not in decl['attrspec']:
         decl['attrspec'].append(attr)
     elif attr == 'public':
         if 'private' not in decl['attrspec']:

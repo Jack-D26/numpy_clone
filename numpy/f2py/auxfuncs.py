@@ -700,9 +700,7 @@ def getcallprotoargument(rout, cb_map={}):
             ctype = cb_map[n] + '_typedef'
         else:
             ctype = getctype(var)
-            if l_and(isintent_c, l_or(isscalar, iscomplex))(var):
-                pass
-            elif isstring(var):
+            if l_and(isintent_c, l_or(isscalar, iscomplex))(var) or isstring(var):
                 pass
             else:
                 if not isattr_value(var):

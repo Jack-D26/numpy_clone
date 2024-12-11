@@ -286,9 +286,7 @@ def _fix_paths(paths, local_path, include_non_existing):
                 if os.path.exists(n2):
                     new_paths.append(n2)
                 else:
-                    if os.path.exists(n):
-                        new_paths.append(n)
-                    elif include_non_existing:
+                    if os.path.exists(n) or include_non_existing:
                         new_paths.append(n)
                     if not os.path.exists(n):
                         print('non-existing path in %r: %r' %
@@ -1298,9 +1296,7 @@ class Configuration:
             raise TypeError(repr(type(files)))
 
         if d is None:
-            if hasattr(filepat, '__call__'):
-                d = ''
-            elif os.path.isabs(filepat):
+            if hasattr(filepat, '__call__') or os.path.isabs(filepat):
                 d = ''
             else:
                 d = os.path.dirname(filepat)

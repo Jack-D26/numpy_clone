@@ -1253,9 +1253,7 @@ def gradient(f, *varargs, axis=None, edge_order=1):
         otype = np.dtype(otype.name.replace('datetime', 'timedelta'))
         # view as timedelta to allow addition
         f = f.view(otype)
-    elif otype.type is np.timedelta64:
-        pass
-    elif np.issubdtype(otype, np.inexact):
+    elif otype.type is np.timedelta64 or np.issubdtype(otype, np.inexact):
         pass
     else:
         # All other types convert to floating point.

@@ -1603,9 +1603,7 @@ def savetxt(fname, X, fmt='%.18e', delimiter=' ', newline='\n', header='',
                 else:
                     fmt = [fmt, ] * ncol
                 format = delimiter.join(fmt)
-            elif iscomplex_X and n_fmt_chars != (2 * ncol):
-                raise error
-            elif ((not iscomplex_X) and n_fmt_chars != ncol):
+            elif iscomplex_X and n_fmt_chars != (2 * ncol) or ((not iscomplex_X) and n_fmt_chars != ncol):
                 raise error
             else:
                 format = fmt
